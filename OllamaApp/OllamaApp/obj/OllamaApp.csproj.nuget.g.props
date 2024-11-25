@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
+    <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/Users/ndai/.nuget/packages/</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/Users/ndai/.nuget/packages/</NuGetPackageFolders>
+    <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.10.0</NuGetToolVersion>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <SourceRoot Include="/Users/ndai/.nuget/packages/" />
+  </ItemGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)blazorise/1.6.2/buildTransitive/Blazorise.props" Condition="Exists('$(NuGetPackageRoot)blazorise/1.6.2/buildTransitive/Blazorise.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise.spinkit/1.6.2/buildTransitive/Blazorise.SpinKit.props" Condition="Exists('$(NuGetPackageRoot)blazorise.spinkit/1.6.2/buildTransitive/Blazorise.SpinKit.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise.richtextedit/1.6.2/buildTransitive/Blazorise.RichTextEdit.props" Condition="Exists('$(NuGetPackageRoot)blazorise.richtextedit/1.6.2/buildTransitive/Blazorise.RichTextEdit.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise.bootstrap/1.6.2/buildTransitive/Blazorise.Bootstrap.props" Condition="Exists('$(NuGetPackageRoot)blazorise.bootstrap/1.6.2/buildTransitive/Blazorise.Bootstrap.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise.material/1.6.2/buildTransitive/Blazorise.Material.props" Condition="Exists('$(NuGetPackageRoot)blazorise.material/1.6.2/buildTransitive/Blazorise.Material.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise.loadingindicator/1.6.2/buildTransitive/Blazorise.LoadingIndicator.props" Condition="Exists('$(NuGetPackageRoot)blazorise.loadingindicator/1.6.2/buildTransitive/Blazorise.LoadingIndicator.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise.icons.material/1.6.2/buildTransitive/Blazorise.Icons.Material.props" Condition="Exists('$(NuGetPackageRoot)blazorise.icons.material/1.6.2/buildTransitive/Blazorise.Icons.Material.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise.animate/1.6.2/buildTransitive/Blazorise.Animate.props" Condition="Exists('$(NuGetPackageRoot)blazorise.animate/1.6.2/buildTransitive/Blazorise.Animate.props')" />
+  </ImportGroup>
+</Project>

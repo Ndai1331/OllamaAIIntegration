@@ -1,0 +1,69 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/ndai/Documents/Personal/OllamaAIIntegration/OllamaApp/OllamaApp/obj/Debug/net8.0/scopedcss/projectbundle/OllamaApp.bundle.scp.css",
+      "PackagePath": "staticwebassets/OllamaApp.bundle.scp.css"
+    },
+    {
+      "Id": "/Users/ndai/Documents/Personal/OllamaAIIntegration/OllamaApp/OllamaApp/wwwroot/brand-logo.png",
+      "PackagePath": "staticwebassets/brand-logo.png"
+    },
+    {
+      "Id": "/Users/ndai/Documents/Personal/OllamaAIIntegration/OllamaApp/OllamaApp/wwwroot/css/blazor-ui.css",
+      "PackagePath": "staticwebassets/css/blazor-ui.css"
+    },
+    {
+      "Id": "/Users/ndai/Documents/Personal/OllamaAIIntegration/OllamaApp/OllamaApp/wwwroot/css/material/material.css",
+      "PackagePath": "staticwebassets/css/material/material.css"
+    },
+    {
+      "Id": "/Users/ndai/Documents/Personal/OllamaAIIntegration/OllamaApp/OllamaApp/wwwroot/css/material/material.css.map",
+      "PackagePath": "staticwebassets/css/material/material.css.map"
+    },
+    {
+      "Id": "/Users/ndai/Documents/Personal/OllamaAIIntegration/OllamaApp/OllamaApp/wwwroot/css/material/material.min.css",
+      "PackagePath": "staticwebassets/css/material/material.min.css"
+    },
+    {
+      "Id": "/Users/ndai/Documents/Personal/OllamaAIIntegration/OllamaApp/OllamaApp/wwwroot/css/material/material.min.css.map",
+      "PackagePath": "staticwebassets/css/material/material.min.css.map"
+    },
+    {
+      "Id": "/Users/ndai/Documents/Personal/OllamaAIIntegration/OllamaApp/OllamaApp/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/Users/ndai/Documents/Personal/OllamaAIIntegration/OllamaApp/OllamaApp/wwwroot/js/material/material.js",
+      "PackagePath": "staticwebassets/js/material/material.js"
+    },
+    {
+      "Id": "/Users/ndai/Documents/Personal/OllamaAIIntegration/OllamaApp/OllamaApp/wwwroot/js/material/material.js.map",
+      "PackagePath": "staticwebassets/js/material/material.js.map"
+    },
+    {
+      "Id": "/Users/ndai/Documents/Personal/OllamaAIIntegration/OllamaApp/OllamaApp/wwwroot/js/material/material.min.js",
+      "PackagePath": "staticwebassets/js/material/material.min.js"
+    },
+    {
+      "Id": "/Users/ndai/Documents/Personal/OllamaAIIntegration/OllamaApp/OllamaApp/wwwroot/js/material/material.min.js.map",
+      "PackagePath": "staticwebassets/js/material/material.min.js.map"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.OllamaApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.OllamaApp.props",
+      "PackagePath": "build\\OllamaApp.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.OllamaApp.props",
+      "PackagePath": "buildMultiTargeting\\OllamaApp.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.OllamaApp.props",
+      "PackagePath": "buildTransitive\\OllamaApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

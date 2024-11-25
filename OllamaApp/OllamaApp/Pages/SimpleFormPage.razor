@@ -1,0 +1,162 @@
+﻿@page "/simple-form"
+@using System.Net.Http
+@using System.Text.Json
+@using OllamaSharp
+@using System.Text
+@inject HttpClient Http
+<Row>
+
+    <Column ColumnSize="ColumnSize.Is12.OnDesktop">
+        <Card Margin="Margin.Is4.FromBottom">
+            <CardHeader>
+                <CardTitle>Server response</CardTitle>
+            </CardHeader>
+            <CardBody>
+                <Row>
+                    <Column ColumnSize="ColumnSize.Is6.OnDesktop">
+                        <Card Margin="Margin.Is4.FromBottom">
+                            <CardHeader>
+                                <CardTitle>Prompt Example</CardTitle>
+                            </CardHeader>
+                            <CardBody>
+                                <Validations @ref="validationsBasicExampleRef" Mode="ValidationMode.Auto" ValidateOnLoad="false">
+                                    <Validation>
+                                        <Field>
+                                            <FieldLabel>Prompt</FieldLabel>
+                                            <MemoEdit Placeholder="Enter prompt" @bind-Text="prompt" />
+                                            <FieldHelp>We'll never share your email with anyone else.</FieldHelp>
+                                        </Field>
+                                    </Validation>
+                                    <Button Color="Color.Primary" Clicked="SubmitBasicExample">Submit</Button>
+                                    <Button Color="Color.Primary" Clicked="StopReceivingData">Stop</Button>
+                                </Validations>
+                            </CardBody>
+                        </Card>
+                    </Column>
+                </Row>
+                <RichTextEdit @ref="richTextEditRef" ConfigureQuillJsMethod="myComponent.configureQuillJs">
+                    <Editor>My example content</Editor>
+                    <Toolbar>
+                        <RichTextEditToolbarGroup>
+                            <RichTextEditToolbarButton Action="RichTextEditAction.Bold" />
+                            <RichTextEditToolbarButton Action="RichTextEditAction.Italic" />
+                            <RichTextEditToolbarSelect Action="RichTextEditAction.Size">
+                                <RichTextEditToolbarSelectItem Value="small" />
+                                <RichTextEditToolbarSelectItem Selected />
+                                <RichTextEditToolbarSelectItem Value="large" />
+                                <RichTextEditToolbarSelectItem Value="huge">Very Big</RichTextEditToolbarSelectItem>
+                            </RichTextEditToolbarSelect>
+                            <RichTextEditToolbarSelect Action="RichTextEditAction.Header">
+                                <RichTextEditToolbarSelectItem Value="1">H1</RichTextEditToolbarSelectItem>
+                                <RichTextEditToolbarSelectItem Value="2">H2</RichTextEditToolbarSelectItem>
+                                <RichTextEditToolbarSelectItem Value="3">H3</RichTextEditToolbarSelectItem>
+                                <RichTextEditToolbarSelectItem Value="4">H4</RichTextEditToolbarSelectItem>
+                                <RichTextEditToolbarSelectItem Value="5">H5</RichTextEditToolbarSelectItem>
+                                <RichTextEditToolbarSelectItem Value="6">H6</RichTextEditToolbarSelectItem>
+                            </RichTextEditToolbarSelect>
+
+                            <RichTextEditToolbarButton Action="RichTextEditAction.List" Value="ordered" />
+                            <RichTextEditToolbarButton Action="RichTextEditAction.List" Value="bullet" />
+                            <RichTextEditToolbarButton Action="RichTextEditAction.Link" />
+                            <RichTextEditToolbarButton Action="RichTextEditAction.Image" />
+                        </RichTextEditToolbarGroup>
+                    </Toolbar>
+                </RichTextEdit>
+            </CardBody>
+        </Card>
+    </Column>
+</Row>
+
+
+<LoadingIndicator @ref="loadingIndicator" FullScreen FadeIn>
+    <IndicatorTemplate>
+        <Animate Animation="Animations.FadeDownRight" Auto Duration="TimeSpan.FromMilliseconds( 700 )">
+            <Div>
+                <SpinKit Type="SpinKitType.Wave" Size="100px" />
+            </Div>
+        </Animate>
+    </IndicatorTemplate>
+</LoadingIndicator>
+
+@code {
+    LoadingIndicator loadingIndicator = default!;
+
+
+    Validations? validationsBasicExampleRef;
+    RichTextEdit? richTextEditRef;
+    string? prompt;
+    private bool isReceivingData = true;
+
+    async Task SubmitBasicExample()
+    {
+        await loadingIndicator.Show();
+        await richTextEditRef!.SetTextAsync("");
+
+        // set up the client
+        var uri = new Uri("http://localhost:11434");
+        var ollama = new OllamaApiClient(uri);
+        // select a model which should be used for further operations
+        ollama.SelectedModel = "llama3.2:quantized";
+        StringBuilder stringBuilder = new StringBuilder();
+        Console.WriteLine(prompt);
+        if (!string.IsNullOrEmpty(prompt))
+        {
+            isReceivingData = true; // Reset the flag before starting
+
+            await foreach (var stream in ollama.GenerateAsync(prompt))
+            {
+                if (!isReceivingData)
+                {
+                    break; // Exit the loop if receiving data is stopped
+                }
+                await loadingIndicator.Hide();
+                if (stream != null)
+                {
+                    stringBuilder.Append(stream.Response);
+                    await richTextEditRef!.SetTextAsync(stringBuilder.ToString());
+                }
+            }
+        }
+
+
+    }
+
+    async Task StopReceivingData()
+    {
+        isReceivingData = false;
+
+    }
+    async Task ShowIndicator()
+    {
+        await loadingIndicator.Show();
+
+        await Task.Delay(3000); // Do work ...
+
+        await loadingIndicator.Hide();
+    }
+
+    public class RequestModel
+    {
+        public string model { get; set; } = "llama3.2:quantized";
+        public string prompt { get; set; } = "viết 1 đoạn 200 từ về lợi ích ăn sáng?";
+        public bool stream { get; set; } = false;
+        public string? keep_alive { get; set; } = "2m";
+    }
+    public class ResponseModel
+    {
+        public string? model { get; set; }
+        public string? created_at { get; set; }
+        public string? response { get; set; }
+        public bool done { get; set; }
+        public string? done_reason { get; set; }
+        public List<int>? context { get; set; }
+        //what is type of 2172495709
+        public long total_duration { get; set; } = 2172495709;
+
+        public long load_duration { get; set; } = 33179750;
+        public int prompt_eval_count { get; set; }
+        public long prompt_eval_duration { get; set; }//943000000
+        public int eval_count { get; set; }
+        public long eval_duration { get; set; } //1195000000
+    }
+}
